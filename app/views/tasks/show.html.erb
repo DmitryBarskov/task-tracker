@@ -12,7 +12,7 @@
 
 <p>
   <strong>Project:</strong>
-  <%= link_to @task.project.name, @task.project) %>
+  <%= link_to @task.project.name, url_for(@task.project) %>
 </p>
 
 <p>
@@ -21,4 +21,4 @@
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', task_path %>
+<%= link_to 'Back', tasks_path %>
