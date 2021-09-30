@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :destroy]
+  before_action :set_task, only: %i[show destroy]
 
   def index
     @tasks = Task.all
@@ -9,13 +9,14 @@ class TasksController < ApplicationController
   end
 
   def new
+    @task = Task.new
   end
 
   def create
-    task = Task.new(task_params)
+    @task = Task.new(task_params)
 
-    if task.save
-      redirect_to task_path(task), notice: 'Task has been created!'
+    if @task.save
+      redirect_to task_path(@task), notice: 'Task has been created!'
     else
       render :new
     end
