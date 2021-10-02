@@ -18,6 +18,8 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       redirect_to task_path(@task), notice: 'Task has been updated'
+    else
+      render :edit
     end
   end
 
