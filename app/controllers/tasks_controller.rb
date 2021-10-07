@@ -8,6 +8,8 @@ class TasksController < ApplicationController
 
   def show; end
 
+  def edit;end
+
   def new
     @project = Project.new
   end
@@ -21,6 +23,15 @@ class TasksController < ApplicationController
       render :new
     end
   end
+
+  def update
+    if @task.update(task_params)
+      redirect_to @task, notice: 'The task has been updated!'
+    else
+      render :edit
+    end
+  end
+
 
   def destroy
     @task.destroy!
