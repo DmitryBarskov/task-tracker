@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show destroy]
+  before_action :set_task, only: %i[show destroy edit update]
 
   def index
     @tasks = Task.all
@@ -22,6 +22,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    if @task.update(task_params)
+      redirect_to task_path(@task), notice: 'Task has been updated'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @task.destroy!
 
@@ -35,6 +43,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:project_id, :title, :description, :deadline_at)
+    params.require(:task).permit(:project_id, :title, :description, :deadline_at)
   end
 end
