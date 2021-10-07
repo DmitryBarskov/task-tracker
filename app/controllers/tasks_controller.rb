@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show destroy]
+  before_action :set_task, only: [:show, :destroy, :edit, :update]
   def index
     @tasks = Task.all
   end

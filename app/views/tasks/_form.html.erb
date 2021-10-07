@@ -1,6 +1,5 @@
 <%= form_with model: task do |form| %>
 
-
   <%= form.label :project_id, 'Select a project' %>
 
   <%= form.select :project_id, Project.all.map{|project|[project.name, project.id]} %>
