@@ -12,7 +12,7 @@ blocks:
         - name: task-tracker-heroku
       env_vars:
         - name: HEROKU_REMOTE
-          value: https://git.heroku.com/pacific-coast-83670.git
+          value: https://git.heroku.com/obscure-hamlet-65327.git
       jobs:
         - name: Deploy to Heroku
           commands:

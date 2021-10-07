@@ -33,3 +33,8 @@ blocks:
           commands:
             - bin/rubocop
 
+promotions:
+  - name: Deploy to Heroku
+    pipeline_file: heroku.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"
