@@ -1,4 +1,5 @@
-<%= form_with model: task do |form| %>
+<%= form_with model: @task do |form| %>
+  <%= render '/common/errors', model: @task %>
 
   <%= form.label :project_id, 'Select a project' %>
 
