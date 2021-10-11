@@ -1,0 +1,14 @@
+= simple_form_for @task do |form|
+  = render '/common/errors', model: @task
+
+  = form.label :project_id, 'Select a project'
+
+  = form.select :project_id, Project.all.pluck(:name, :id)
+
+  = form.input :title
+
+  = form.input :description
+
+  = form.input :deadline_at
+  br
+  = form.submit 'Save'
