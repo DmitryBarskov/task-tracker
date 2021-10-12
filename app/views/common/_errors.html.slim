@@ -1,0 +1,8 @@
+- if model.errors.any?
+  #error_explanation
+    =pluralize(model.errors.count, "error")
+    |
+      prohibited this project from being saved:
+    ul
+      - model.errors.each do |error|
+        = error.full_message
