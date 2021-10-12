@@ -1,24 +1,22 @@
-# frozen_string_literal: true
-
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :destroy, :edit, :update]
+  before_action :set_task, only: %i[show destroy edit update]
+
   def index
     @tasks = Task.all
   end
 
-  def show; end
-
-  def edit;end
+  def show
+  end
 
   def new
-    @project = Project.new
+    @task = Task.new
   end
 
   def create
-    task = Task.new(task_params)
+    @task = Task.new(task_params)
 
-    if task.save
-      redirect_to task_path(task), notice: 'Task has ben created'
+    if @task.save
+      redirect_to task_path(@task), notice: 'Task has been created!'
     else
       render :new
     end
@@ -26,12 +24,11 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'The task has been updated!'
+      redirect_to task_path(@task), notice: 'Task has been updated'
     else
       render :edit
     end
   end
-
 
   def destroy
     @task.destroy!
@@ -46,6 +43,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:project_id, :title, :description, :deadline_at)
+    params.require(:task).permit(:project_id, :title, :description, :deadline_at)
   end
 end
