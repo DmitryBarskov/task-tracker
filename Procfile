@@ -1,2 +1,2 @@
-web: bundle exec Puma
+web: bundle exec puma
 release: bundle exec rake db:migrate
