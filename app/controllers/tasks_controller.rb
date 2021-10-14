@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show destroy edit update]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def index
     @tasks = Task.all
@@ -22,9 +22,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: 'Task has been updated'
+      redirect_to @task, notice: 'The task has been updated!'
     else
       render :edit
     end
