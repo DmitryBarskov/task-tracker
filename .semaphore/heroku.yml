@@ -9,7 +9,7 @@ blocks:
   - name: Deploy
     task:
       secrets:
-        - name: task-tracker-heroku
+        - name: demoapp-heroku
       env_vars:
         - name: HEROKU_REMOTE
           value: https://git.heroku.com/blooming-scrubland-15784.git
