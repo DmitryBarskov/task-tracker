@@ -1,7 +1,12 @@
 module Authentication
+  extend ActiveSupport::Concern
+
   class UserNotAuthenticated < StandardError; end
 
-  rescue_from UserNotAuthenticated, with: :not_authenticated!
+  included do
+    rescue_from UserNotAuthenticated, with: :not_authenticated!
+    helper_method :current_user
+  end
 
   def authenticate_current_user!
     return if session[:current_user_id] && current_user.present?
@@ -12,7 +17,6 @@ module Authentication
   def current_user
     @current_user ||= User.find_by(id: session[:current_user_id])
   end
-  helper_method :current_user
 
   private
 
