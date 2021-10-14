@@ -1,4 +1,4 @@
- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
@@ -9,18 +9,17 @@
   <strong>Description:</strong>
   <%= @task.description %>
 </p>
- 
- <p>
+
+<p>
   <strong>Project:</strong>
-  <%= link_to @task.project_id, @task.project %>
+  <%= link_to @task.project.name, @task.project %>
 </p>
- 
- <p>
+
+<p>
   <strong>Deadline:</strong>
-  <%= @task.deadline_at %>
+  <%= @task.deadline_at.to_s(:long) %>
 </p>
- 
- 
- 
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Delete', task_path(@task), method: :delete %> |
 <%= link_to 'Back', tasks_path %>
