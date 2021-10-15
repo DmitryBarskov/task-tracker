@@ -1,4 +1,3 @@
-Ramazan, [11.10.21 23:04]
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show destroy edit update]
 
