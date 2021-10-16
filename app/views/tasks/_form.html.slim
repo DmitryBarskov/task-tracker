@@ -1,0 +1,16 @@
+= form_with model: task do |form|
+  = render 'common/errors', model: task
+
+  = form.label :project_id, 'Select a project'
+  = form.select :project_id, Project.all.pluck(:name, :id)
+
+  = form.label :title, 'Title'
+  = form.text_field :title
+
+  = form.label :description, 'Description'
+  = form.text_field :description
+
+  = form.label :deadline_at, 'Deadline At'
+  = form.text_field :deadline_at
+  
+  = form.submit 'Save'

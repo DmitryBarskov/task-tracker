@@ -5,16 +5,18 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
   end
+
   # GET /projects/1
-  def show
-  end
+  def show; end
+
   # GET /projects/new
   def new
     @project = Project.new
   end
+
   # GET /projects/1/edit
-  def edit
-  end
+  def edit; end
+
   # POST /projects
   def create
     @project = Project.new(project_params)
@@ -24,6 +26,7 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
+
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
@@ -32,6 +35,7 @@ class ProjectsController < ApplicationController
       render :edit
     end
   end
+
   # DELETE /projects/1
   def destroy
     @project.destroy
