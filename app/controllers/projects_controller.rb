@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_current_user, except: %i[index show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects

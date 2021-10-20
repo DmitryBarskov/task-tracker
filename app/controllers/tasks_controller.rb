@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_current_user, except: %i[index show]
   before_action :set_task, only: %i[show destroy edit update]
 
   def index
