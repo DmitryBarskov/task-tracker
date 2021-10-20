@@ -1,10 +1,13 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_current_user!, except: %i[new create]
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User, :create?
     authenticated_user = User.find_by(
       email: user_params[:email]
     )&.authenticate(user_params[:password])

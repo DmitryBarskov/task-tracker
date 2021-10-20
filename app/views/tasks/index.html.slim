@@ -15,8 +15,8 @@ table
       th colspan="3"
 
   tbody
-    tr
-      - @tasks.each do |task|
+    - @tasks.each do |task|
+      tr
         td = task.id
         td = task.project_id
         td = task.title
