@@ -14,6 +14,12 @@
   </head>
 
   <body>
+    <%- flash.each do |key, message| %>
+      <div class="alert alert-light flash-<%= key %>" role="alert">
+        <%= message%>
+      </div>
+    <% end %>
+    <p style = "margin-top: 20px;">Current user id: <%= session[:current_user_id].inspect %>.</p>
     <div class="row">
       <div class="offset-4 col-4">
         <%= yield %>

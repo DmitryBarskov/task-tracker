@@ -1,0 +1,5 @@
+= simple_form_for user, url: sessions_path do |form|
+	= form.input :full_name
+	= form.input :email
+	= form.input :password
+	= form.submit "Sign Up", class: "btn btn-primary"
