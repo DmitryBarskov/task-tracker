@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ProjectPolicy' do
+RSpec.describe 'ProjectPolicy', type: :policy do
   subject(:policy) { ProjectPolicy.new(user, project) }
 
   let(:project) { Project.new }

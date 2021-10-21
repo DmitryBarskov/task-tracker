@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'TaskPolicy' do
+RSpec.describe 'TaskPolicy', type: :policy do
   subject(:policy) { TaskPolicy.new(user, task) }
 
   describe '#index?' do
