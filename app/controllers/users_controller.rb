@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
+  
   def show
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User, :create?
     @user = User.new(users_params)
 
     if @user.save

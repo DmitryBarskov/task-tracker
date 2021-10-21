@@ -1,5 +1,5 @@
-class ProjectPolicy < ApplicationPolicy
-  alias_method :project, :record
+class TaskPolicy < ApplicationPolicy
+  alias_method :task, :record
 
   def index?
     true
@@ -10,7 +10,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    user.id == project.user_id
+    user.id == task.user_id
   end
 
   def destroy?

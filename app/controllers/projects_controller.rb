@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
+
   before_action :authenticate_current_user!, except: %i[index]
   before_action :set_project, only: %i[show edit update destroy]
-  before_action -> { authorize @project }, only: %i[show edit update destroy]
-
+  # before_action :authorize!, only: %i[edit update destroy]
+  before_action -> {authorize @project}, only: %i[show edit update destroy]
   # GET /projects
   def index
     authorize Project
@@ -26,7 +27,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     authorize Project, :create?
-
     @project = Project.new(project_params)
 
     if @project.save
@@ -52,6 +52,13 @@ class ProjectsController < ApplicationController
   end
 
   private
+  
+  def authorize!
+    return if @project.user_id == current_user.id
+
+    raise Authorization::AuthorizationError, "You are not allowed to manage this project action"
+  end
+
 
   def set_project
     @project = Project.find(params[:id])
