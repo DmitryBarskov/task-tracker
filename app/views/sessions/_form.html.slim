@@ -1,0 +1,7 @@
+= simple_form_for user, url: sessions_path do |form|
+
+  = form.error :base
+
+  = form.input :email, required: true
+  = form.input :password, required: true
+  = form.submit "Log in", class: "btn btn-primary"
