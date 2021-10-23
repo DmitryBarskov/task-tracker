@@ -1,5 +1,5 @@
-<%= form_with model: task do |form| %>
-  <%= render '/common/errors', model: task %>
+<%= form_with model: @task do |form| %>
+  <%= render '/common/errors', model: @task %>
 
   <%= form.label :project_id, 'Select a project' %>
   <%= form.select :project_id, Project.all.pluck(:name, :id) %>

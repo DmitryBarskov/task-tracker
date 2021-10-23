@@ -4,9 +4,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User
     @user = User.new(users_params)
 
     if @user.save

@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User
     authenticated_user = User.find_by(
       email: user_params[:email]
     )&.authenticate(user_params[:password])
