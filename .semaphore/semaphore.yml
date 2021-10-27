@@ -1,0 +1,40 @@
+version: v1.0
+name: Task Tracker
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+global_job_config:
+  env_vars:
+    - name: RAILS_ENV
+      value: test
+    - name: RACK_ENV
+      value: test
+  prologue:
+    commands:
+      - checkout
+      - cache restore
+      - bundle install
+
+blocks:
+  - name: Setup
+    dependencies: []
+    task:
+      jobs:
+        - name: bundle
+          commands:
+            - cache store
+  - name: Quality
+    dependencies: ["Setup"]
+    task:
+      jobs:
+        - name: Check code quality
+          commands:
+            - bin/rubocop
+
+promotions:
+  - name: Deploy to Heroku
+    pipeline_file: heroku.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"
