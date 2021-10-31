@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_current_user!, except: %i[index]
   before_action :set_task, only: %i[show edit update destroy]
-  # before_action :authorize!, only: %i[edit update destroy]
   before_action -> {authorize @task}, only: %i[show edit update destroy]
 
   def index
@@ -48,13 +47,6 @@ class TasksController < ApplicationController
 
   private
   
-  def authorize!
-    return if @task.user_id == current_user.id
-
-    raise Authorization::AuthorizationError, "You are not allowed to manage this task action"
-  end
-
-
   def set_task
     @task = Task.find(params[:id])
   end
