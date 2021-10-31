@@ -1,16 +1,21 @@
 example_id                                      | status  | run_time        |
 ----------------------------------------------- | ------- | --------------- |
-./spec/features/projects/edit_spec.rb[1:1]      | passed  | 0.19427 seconds |
-./spec/features/projects/edit_spec.rb[1:2:1]    | passed  | 0.04717 seconds |
-./spec/features/projects/view_spec.rb[1:1]      | passed  | 0.36019 seconds |
-./spec/policies/project_policy_spec.rb[1:1:1:1] | passed  | 0.00057 seconds |
-./spec/policies/project_policy_spec.rb[1:1:2:1] | passed  | 0.00073 seconds |
-./spec/policies/project_policy_spec.rb[1:2:1:1] | passed  | 0.00099 seconds |
-./spec/policies/project_policy_spec.rb[1:2:2:1] | passed  | 0.00107 seconds |
-./spec/policies/project_policy_spec.rb[1:5:1]   | pending | 0.00001 seconds |
-./spec/policies/project_policy_spec.rb[1:6:1:1] | passed  | 0.00048 seconds |
-./spec/policies/project_policy_spec.rb[1:6:2:1] | passed  | 0.00052 seconds |
-./spec/policies/task_policy_spec.rb[1:1:1:1]    | passed  | 0.00294 seconds |
-./spec/policies/task_policy_spec.rb[1:1:2:1]    | passed  | 0.00046 seconds |
-./spec/policies/task_policy_spec.rb[1:2:1:1]    | passed  | 0.0056 seconds  |
-./spec/policies/task_policy_spec.rb[1:2:2:1]    | passed  | 0.0005 seconds  |
+./spec/features/projects/edit_spec.rb[1:1]      | passed  | 0.18186 seconds |
+./spec/features/projects/edit_spec.rb[1:2:1]    | passed  | 0.13717 seconds |
+./spec/features/projects/view_spec.rb[1:1]      | passed  | 0.12117 seconds |
+./spec/features/tasks/delete_spec.rb[1:1]       | passed  | 0.81112 seconds |
+./spec/features/tasks/delete_spec.rb[1:2:1]     | failed  | 0.08342 seconds |
+./spec/features/tasks/edit_spec.rb[1:1]         | failed  | 0.13182 seconds |
+./spec/features/tasks/edit_spec.rb[1:2:1]       | passed  | 0.13927 seconds |
+./spec/features/tasks/view_spec.rb[1:1]         | passed  | 0.16765 seconds |
+./spec/policies/project_policy_spec.rb[1:1:1:1] | failed  | 0.02079 seconds |
+./spec/policies/project_policy_spec.rb[1:1:2:1] | passed  | 0.00269 seconds |
+./spec/policies/project_policy_spec.rb[1:2:1:1] | passed  | 0.00263 seconds |
+./spec/policies/project_policy_spec.rb[1:2:2:1] | passed  | 0.13155 seconds |
+./spec/policies/project_policy_spec.rb[1:5:1]   | pending | 0.00003 seconds |
+./spec/policies/project_policy_spec.rb[1:6:1:1] | passed  | 0.00272 seconds |
+./spec/policies/project_policy_spec.rb[1:6:2:1] | passed  | 0.00648 seconds |
+./spec/policies/task_policy_spec.rb[1:1:1:1]    | failed  | 0.00344 seconds |
+./spec/policies/task_policy_spec.rb[1:1:2:1]    | passed  | 0.00289 seconds |
+./spec/policies/task_policy_spec.rb[1:2:1:1]    | passed  | 0.0036 seconds  |
+./spec/policies/task_policy_spec.rb[1:2:2:1]    | failed  | 0.0042 seconds  |

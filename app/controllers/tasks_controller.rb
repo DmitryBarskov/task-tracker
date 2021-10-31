@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
+  before_action :authenticate_current_user!, except: %i[index]
   before_action :set_task, only: %i[show edit update destroy]
+  before_action -> {authorize @task}, only: %i[show edit update destroy]
 
   def index
+    authorize Task
     @tasks = Task.all
   end
 
@@ -10,9 +13,11 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    authorize @task
   end
 
   def create
+    authorize Task, :create?
     @task = Task.new(task_params)
 
     if @task.save
@@ -46,5 +51,6 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:project_id, :title, :description, :deadline_at)
+          .merge(user_id: current_user.id)
   end
 end

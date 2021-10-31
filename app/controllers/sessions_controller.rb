@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
-  skip_after_action :verify_authorized
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User, :create?
     authenticated_user = User.find_by(
       email: user_params[:email]
     )&.authenticate(user_params[:password])
