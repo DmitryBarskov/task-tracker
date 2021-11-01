@@ -1,9 +1,5 @@
 class AddUserToProject < ActiveRecord::Migration[6.1]
-  def up
-    change_table :projects do |table|
-      table.integer :user_id, null: true
-
-      table.index :user_id
-    end
+  def change
+    add_column :projects, :user_id, :integer, null: true
   end
 end
