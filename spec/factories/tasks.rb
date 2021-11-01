@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :task do
     user
-    sequence(:project){"Project #"}
-    sequence(:title) {"Task #" }
+    project
+    sequence(:title) { |n| "Task ##{n}" }
     description { Faker::Lorem.paragraph }
-    deadline_at {2.days.since}
+    deadline_at {1.days.from_now}
   end
 end

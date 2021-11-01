@@ -59,6 +59,6 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :description)
-          .merge(user_id: current_user.id)
+          .merge(user: current_user)
   end
 end
