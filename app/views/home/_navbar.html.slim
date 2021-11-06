@@ -1,0 +1,21 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand[href="#"]
+    | TaskTracker
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navbarNavAltMarkup.collapse.navbar-collapse
+    .navbar-nav
+    - if user_signed_in?
+      a.nav-item
+        = link_to " Sign Out " , destroy_user_session_path, method: :delete , class: "nav-link"
+      a.nav-item
+        = link_to " Edit Profile " , edit_user_registration_path , class: "nav-link"
+      a.nav-item
+        = link_to " Projects " , projects_path , class: "nav-link"
+      a.nav-item
+        = link_to " Tasks " , tasks_path , class: "nav-link"
+    - else
+      a.nav-item
+        = link_to " Sign In " , new_user_session_path , class: "nav-link"
+      a.nav-item
+        = link_to " Sign Up " , new_user_registration_path , class: "nav-link"

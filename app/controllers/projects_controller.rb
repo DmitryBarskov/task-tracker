@@ -1,9 +1,13 @@
 class ProjectsController < ApplicationController
+  before_action :user_signed_in?
   before_action :set_project, only: %i[show edit update destroy]
+  after_action :verify_authorized, except: :index, unless: :devise_controller?
+  after_action :verify_policy_scoped, only: %i[ edit update destroy]
 
   # GET /projects
   def index
     @projects = Project.all
+    authorize @projects
   end
 
   # GET /projects/1
@@ -13,6 +17,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    authorize @project
   end
 
   # GET /projects/1/edit
@@ -22,7 +27,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
-
+    authorize @project
     if @project.save
       redirect_to @project, notice: 'Project was successfully created.'
     else
@@ -50,6 +55,7 @@ class ProjectsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = Project.find(params[:id])
+    authorize @project
   end
 
   # Only allow a list of trusted parameters through.

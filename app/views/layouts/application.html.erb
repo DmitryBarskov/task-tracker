@@ -15,8 +15,11 @@
 
   <body>
     <div class="row">
+      <%= render 'home/navbar' %>
       <div class="offset-4 col-4">
-        <%= yield %>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+          <%= yield %>
       </div>
     </div>
   </body>
