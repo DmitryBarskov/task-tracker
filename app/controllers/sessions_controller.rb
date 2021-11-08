@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_after_action :verify_authorized
+
   def new
     @user = User.new
   end
@@ -16,6 +18,12 @@ class SessionsController < ApplicationController
       @user.errors.add :base, "Wrong email or password"
       render :new
     end
+  end
+
+  def destroy
+    session.delete(:current_user_id)
+
+    redirect_to projects_path, notice: "You've successfully logged out!"
   end
 
   private
