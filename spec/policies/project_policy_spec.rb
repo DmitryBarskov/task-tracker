@@ -43,7 +43,19 @@ RSpec.describe 'ProjectPolicy', type: :policy do
   describe '#create?'
 
   describe '#edit?' do
-    pending 'implement me'
+    subject { policy.edit? }
+
+    context 'when user is not authenticated' do
+      let(:user) {nil}
+
+      it { is_expected.to eq(false)}
+    end
+
+    context 'when user is authenticated' do
+      let(:user) { User.new }
+
+      it { is_expected.to eq(true) }
+    end
   end
 
   describe '#update?' do
