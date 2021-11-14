@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'TaskPolicy', type: :policy do
   subject(:policy) { TaskPolicy.new(user, task) }
 
-  let(:task) {Task.new}
-
   describe '#index?' do
     subject { policy.index? }
 
