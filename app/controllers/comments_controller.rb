@@ -2,13 +2,22 @@ class CommentsController < ApplicationController
   before_action :authenticate_current_user!
   before_action :set_comment
 
-  def create
-    comment = Comment.new(comment_params)
 
-    if comment.save
-      redirect_to comment, notice: 'Comment was successfully created.'
+  def show
+  end
+
+
+  def new
+    @comment = Comment.new
+  end
+
+  def create
+    @comment = Comment.new(comment_params)
+
+    if @comment.save
+      redirect_to @comment, notice: 'Comment was successfully created.'
     else
-      redirect_to comment.task, alert: 'Comment was not created'
+      redirect_to @comment.task, alert: 'Comment was not created'
     end
   end
 
@@ -16,10 +25,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if comment.update(comment_params)
-      redirect_to comment, notice: 'Comment was successfully updated.'
+    if @comment.update(comment_params)
+      redirect_to @comment, notice: 'Comment was successfully updated.'
     else
-      redirect_to comment.task, alert: 'Comment was not updated'
+      redirect_to @comment.task, alert: 'Comment was not updated'
     end
   end
 

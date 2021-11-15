@@ -1,0 +1,4 @@
+= @comments.each do |comment|
+	p
+  		= comment.content
+  		= link_to 'Edit', edit_comments_path(comment)

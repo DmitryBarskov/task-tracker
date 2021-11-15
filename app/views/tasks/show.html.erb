@@ -25,4 +25,7 @@
 <%= link_to 'Back', tasks_path %>
 
 
-render comments, partial: "comments/list"
+<br>
+<%= render partial: "comments/list", comments: @comments  %>
+<br>
+<%= link_to "comments/form",  new_task_comment_path(@task.id) %>
