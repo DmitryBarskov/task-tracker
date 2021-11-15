@@ -8,11 +8,8 @@ RSpec.describe 'Edit a project', type: :feature do
   scenario 'user edit a project' do
     visit edit_project_path(project)
 
-    save_and_open_page
-
     fill_in 'Name', with: 'A new name for the project'
     fill_in 'Description', with: 'Another description'
-    save_and_open_page
     click_button 'Update Project'
 
     expect(page).to have_current_path(project_path(project))
