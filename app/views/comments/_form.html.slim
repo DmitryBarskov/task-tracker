@@ -1,5 +1,11 @@
+ 
+p
+  strong Add Comment
 
-= form_with model:@comments do |form|
+= simple_form_for [@task, @comment] do |form|
+  = form.label :task_id, 'Select a task'
+  = form.select :task_id, Task.all.map{|task|[task.title, task.id]}
+  br
   = form.input :content
   br
   = form.submit 'Save'

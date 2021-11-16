@@ -10,7 +10,8 @@ class TasksController < ApplicationController
 
 
   def show
-    @comments = Comment.all
+    # @comments = Comment.all
+    @comments = Comment.where(task_id: @task.id)
     @comment = Comment.new
   end
 

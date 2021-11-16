@@ -1,4 +1,10 @@
-= @comments.each do |comment|
+| List comments: 
+- @comments.each do |comment|
 	p
-  		= comment.content
-  		= link_to 'Edit', edit_comments_path(comment)
+  	= User.find(comment.user_id).full_name
+	p
+		strong Text: 
+		= comment.content
+	= link_to 'Edit', edit_task_comment_path(comment.task_id, comment.id)
+	| |
+	= link_to 'Destroy', task_comment_path(comment.task_id, comment.id), method: :delete, data: { confirm: 'Are you sure?' }

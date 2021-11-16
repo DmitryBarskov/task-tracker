@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_after_action :verify_authorized
   before_action :authenticate_current_user!
   before_action :set_comment
 
@@ -15,9 +16,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      redirect_to task_path(@comment.task_id), notice: 'Comment was successfully created.'
     else
-      redirect_to @comment.task, alert: 'Comment was not created'
+      redirect_to @comment.errors, alert: 'Comment was not created'
     end
   end
 
@@ -31,6 +32,14 @@ class CommentsController < ApplicationController
       redirect_to @comment.task, alert: 'Comment was not updated'
     end
   end
+
+
+  def destroy
+    @comment.destroy!
+
+    redirect_to task_path(@comment.task_id)
+  end
+
 
   private
 
