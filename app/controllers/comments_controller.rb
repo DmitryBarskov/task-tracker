@@ -18,18 +18,20 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to task_path(@comment.task_id), notice: 'Comment was successfully created.'
     else
-      redirect_to @comment.errors, alert: 'Comment was not created'
+      redirect_to task_path(@comment.task_id), alert: 'Comment was not created'
     end
   end
 
   def edit
+    @comment = Comment.find(params[:id])
+    @task = Task.find(params[:task_id])
   end
 
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully updated.'
+      redirect_to task_path(@comment.task_id), notice: 'Comment was successfully updated.'
     else
-      redirect_to @comment.task, alert: 'Comment was not updated'
+      redirect_to task_path(@comment.task_id), alert: 'Comment was not updated'
     end
   end
 
