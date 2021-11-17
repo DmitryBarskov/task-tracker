@@ -1,0 +1,8 @@
+h1
+  | New product #{@project.name} created.
+p
+  | You is a member of this project. Here you can see list of members of this project:
+  ul
+    - @project.users.each do |user|
+      li 
+        = user.email

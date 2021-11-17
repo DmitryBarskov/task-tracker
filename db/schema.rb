@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_124958) do
+ActiveRecord::Schema.define(version: 2021_11_11_132317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "target_type"
+    t.integer "target_id"
+    t.string "kind"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_10_28_124958) do
   create_table "projects_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
+    t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

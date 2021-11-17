@@ -27,9 +27,8 @@ class ProjectsController < ApplicationController
   def create
     authorize Project, :create?
 
-    @project = Project.new(project_params)
-
-    if @project.save
+    @project = create_project.project
+    if create_project.success?
       redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new
@@ -53,12 +52,16 @@ class ProjectsController < ApplicationController
 
   private
 
+  def create_project
+    @create_project ||=
+      CreateProject.call(project_params: project_params, current_user: current_user)
+  end
+
   def set_project
     @project = Project.find(params[:id])
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :user_ids)
-          .merge(user_id: current_user.id)
+    params.require(:project).permit(:name, :description, user_ids: [])
   end
 end

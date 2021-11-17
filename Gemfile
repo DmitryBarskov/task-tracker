@@ -19,6 +19,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim'
 gem 'simple_form'
 gem 'rubocop'
+gem 'interactor'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -29,6 +31,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem "letter_opener"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
