@@ -17,7 +17,7 @@ class BaseFilteredQuery
   def sanitized_filter_params(params)
     params
       .to_h
-      .deep_symbilize_keys!
+      .deep_symbolize_keys
       .reject { |k,v| !self.class::ALLOWED_PARAMS.include?(k) || v.to_s.blank? }
   end
 
