@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_current_user!
   before_action :set_comment, only: %w[create edit update]
+  before_action -> { authorize @comment }, only: %i[show edit update]
 
   def index
   end
@@ -8,8 +9,6 @@ class CommentsController < ApplicationController
   def create
     authorize Comment, :create?
     comment = Comment.new(comment_params)
-    puts comment_params
-    puts comment.inspect
 
     if comment.save
       redirect_to tasks_path, notice: 'Comment was successfully created.'
@@ -22,10 +21,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if comment.update(comment_params)
-      redirect_to comment, notice: 'Comment was successfully updated.'
+    if @comment.update(comment_params)
+      redirect_to @comment.task, notice: 'Comment was successfully updated.'
     else
-      redirect_to comment.task, alert: 'Comment was not updated'
+      redirect_to @comment.task, alert: 'Comment was not updated'
     end
   end
 
@@ -33,6 +32,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find_by(id: params[:id])
+  end
+
+  def set_task
+    @task = Task.find(params[:task_id])
   end
 
   def comment_params

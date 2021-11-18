@@ -1,4 +1,6 @@
-- @comments.each do |comment|
+- comments.each do |comment|
   p = comment.user.full_name + ":"
   p class="ml-5"
     = comment.content
+    | |
+    = link_to 'Edit', edit_task_comment_path(comment)

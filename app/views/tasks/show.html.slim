@@ -17,6 +17,14 @@ p
   strong Deadline:
   = @task.deadline_at
 
+p
+  strong Status:
+  = @task.status
+= simple_form_for @task do |form|
+  = form.label :status, "Set status"
+  = form.select :status, %w[not_started started finished]
+  = form.submit 'Save'
+
 = link_to 'Edit', edit_task_path(@task)
 | |
 = link_to 'Back', tasks_path
@@ -25,6 +33,4 @@ p
 p Comments:
 = render "comments/list", comments: @comments
 p Leave comment:
-= render "comments/form"
-
-= console
+= render "comments/form", comment: @comment
