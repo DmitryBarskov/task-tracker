@@ -1,7 +1,4 @@
 
-
-
-
 <%= form_with model: task do |form| %>
   <%= render 'common/errors', model: task %>
 
@@ -16,6 +13,9 @@
 
   <%= form.label :deadline_at, 'Deadline At' %>
   <%= form.datetime_local_field :deadline_at %>
+
+  <%= form.label :status, 'Select a status task' %>
+  <%= form.select :status, Task::ALLOWED_STATUSES %>
 
   <%= form.submit 'Save' %>
 <% end %>

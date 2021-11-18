@@ -48,7 +48,6 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-
   private
 
   def set_task
@@ -56,6 +55,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:project_id, :title, :description, :deadline_at).merge(user_id: current_user.id)
+    params.require(:task).permit(:project_id, :title, :description, :deadline_at, :status).merge(user_id: current_user.id)
   end
 end

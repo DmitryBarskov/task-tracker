@@ -22,11 +22,6 @@
 <p>
   <strong>Status:</strong>
   <%= @task.status %>
-  <% if @task.status == "not_started" %>
-  <div class="btn btn-primary ">start<% @task.status = change_status(@task) %></div>
-  <% else %>
-  <div class="btn btn-primary ">finish<% @task.status = change_status(@task) %></div>
-  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
+      puts project_params
       redirect_to @project, notice: 'Project was successfully created.'
     else
       render :new
