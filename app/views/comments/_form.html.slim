@@ -4,7 +4,10 @@
   / = form.label :task_id, 'Select a task'
 
   / = form.select :task_id, Task.all.map{|task|[task.title, task.id]}
-  = form.input :task_id, :as => :hidden, :input_html => { :value => comment.task.id}
-  = form.input :content
+  .field
+    = form.input :task_id, :as => :hidden, :input_html => { :value => comment.task.id}
+  .field
+    = form.input :content
   br
-  = form.submit 'Save'
+  .actions
+    = form.submit 'Save', class: 'btn btn-primary'
