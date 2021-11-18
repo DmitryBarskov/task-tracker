@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :destroy, :edit, :update]
+  before_action :set_comments, only: [:show]
   before_action -> { authorize @task }, only: %i[show edit update destroy]
 
   def index
@@ -50,5 +51,10 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:project_id, :title, :description, :deadline_at)
+  end
+
+  def set_comments
+    @comments = Comment.where(task_id: params[:id])
+    @comment = Comment.new(task_id: @task.id)
   end
 end

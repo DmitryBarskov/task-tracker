@@ -1,7 +1,15 @@
 class SessionsController < ApplicationController
+  skip_after_action :verify_authorized
+
   def new
     @user = User.new
     authorize @user
+  end
+
+  def destroy
+    session.delete(:current_user_id)
+
+    redirect_to projects_path, notice: "You've successfully logged out!"
   end
 
   def create

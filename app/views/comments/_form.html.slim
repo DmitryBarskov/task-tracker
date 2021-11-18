@@ -1,0 +1,10 @@
+= simple_form_for [@task, @comment]  do |form|
+  / = render '/common/errors', model: @task
+
+  / = form.label :task_id, 'Select a task'
+
+  / = form.select :task_id, Task.all.map{|task|[task.title, task.id]}
+  = form.input :task_id, :as => :hidden, :input_html => { :value => @task.id}
+  = form.input :content
+  br
+  = form.submit 'Save'
