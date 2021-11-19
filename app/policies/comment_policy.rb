@@ -6,7 +6,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    comment.user.id == user.id
+    comment.user_id == user.id
   end
 
   class Scope < Scope
