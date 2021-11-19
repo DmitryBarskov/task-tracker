@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_174431) do
   create_table "projects_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
+    t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -59,7 +60,9 @@ ActiveRecord::Schema.define(version: 2021_11_17_174431) do
     t.string "full_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["task_id"], name: "index_users_on_task_id"
   end
 
   add_foreign_key "tasks", "projects"
