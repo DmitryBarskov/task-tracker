@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_current_user!, except: %i[index]
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: %i[show edit update destroy]
   before_action -> { authorize @project }, only: %i[show edit update destroy]
 
   # GET /projects
@@ -38,6 +38,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
+    puts project_params
     if @project.update(project_params)
       redirect_to @project, notice: 'Project was successfully updated.'
     else
@@ -52,12 +53,13 @@ class ProjectsController < ApplicationController
   end
 
   private
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    def project_params
-      params.require(:project).permit(:name, :description, :user_ids)
-        .merge(user_id: current_user.id)
-    end
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:name, :description, user_ids: [])
+          .merge(user_id: current_user.id)
+  end
 end
