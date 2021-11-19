@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects
   resources :tasks do
-    resources :comments, only: %i[new create edit update]
+    resources :comments, only: %i[create edit update]
   end
 
   get '/users', to: 'users#show'
