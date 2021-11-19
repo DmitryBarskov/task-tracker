@@ -3,8 +3,6 @@ p
   strong Add Comment
 
 = simple_form_for [@task, @comment] do |form|
-  = form.label :task_id, 'Select a task'
-  = form.select :task_id, Task.all.pluck(:title, :id)
   br
   = form.input :content
   br

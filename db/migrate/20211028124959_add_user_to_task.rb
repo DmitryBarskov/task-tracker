@@ -1,5 +1,5 @@
 class AddUserToTask < ActiveRecord::Migration[6.1]
   def change
-    add_column :tasks, :user_id, :integer, null: true
+    add_reference :tasks, :user, index:true
   end
 end

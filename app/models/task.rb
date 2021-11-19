@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   ALLOWED_STATUSES = ["not_started", "started", "finished"]
-
+  
+  has_many :comments
+  
   belongs_to :project
 
   validates :title, presence: true
