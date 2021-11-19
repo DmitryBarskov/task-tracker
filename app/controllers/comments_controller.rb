@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to task_path(@comment.task_id), notice: 'Comment was successfully created.'
     else
-      redirect_to tasks_path, alert: 'Comment was not created'
+      redirect_to @comment.task, alert: 'Comment was not created'
     end
   end
 
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to task_path(@comment.task_id), notice: 'Comment was successfully updated.'
     else
-      redirect_to tasks_path, alert: 'Comment was not updated'
+      redirect_to @comment.task, alert: 'Comment was not updated'
     end
   end
 

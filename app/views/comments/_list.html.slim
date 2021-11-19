@@ -1,7 +1,7 @@
 | List comments: 
 - @comments.each do |comment|
 	p
-  	= User.find(comment.user_id).full_name
+  	= comment.user.full_name
 	p
 		strong Text: 
 		= comment.content
