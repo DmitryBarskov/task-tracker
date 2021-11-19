@@ -10,7 +10,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def update?
-    user.id == task.user_id
+    task.user_id.in?(project.users.ids)
   end
 
   def destroy?

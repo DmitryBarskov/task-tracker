@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     authorize Project, :create?
-
     @project = Project.new(project_params)
 
     if @project.save
@@ -59,7 +58,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :user_ids)
-          .merge(user_id: current_user.id)
+    params.require(:project).permit(:name, :description, user_ids: [])
   end
 end
