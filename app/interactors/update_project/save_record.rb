@@ -1,7 +1,6 @@
-class CreateProject
+class UpdateProject
   class SaveRecord
     include Interactor
-    byebug
 
     delegate :prepared_project_params, to: :context
 
@@ -13,7 +12,7 @@ class CreateProject
     private
 
     def project
-      @project ||= Project.new(prepared_project_params)
+      @project ||= Project.update(prepared_project_params)
     end
   end
 end

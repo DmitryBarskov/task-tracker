@@ -57,6 +57,11 @@ class ProjectsController < ApplicationController
       CreateProject.call(project_params: project_params, current_user: current_user)
   end
 
+  def update_project
+    @update_project ||= 
+      UpdateProject.call(project_params: project_params, current_user: current_user)
+  end
+
   def set_project
     @project = Project.find(params[:id])
   end
