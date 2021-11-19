@@ -1,13 +1,15 @@
 class CommentsController < ApplicationController
-  skip_after_action :verify_authorized
   before_action :authenticate_current_user!
-  before_action :set_comment
+  before_action :set_comment, only: %i[edit update]
+  before_action -> { authorize @comment }, only: %i[edit update]
 
   def new
     @comment = Comment.new
+    authorize @comment
   end
 
   def create
+    authorize Comment, :create?
     task = Task.find_by(id: params[:task_id])
     @comment = task.comments.new(comment_params)
     if @comment.save
