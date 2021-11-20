@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_132317) do
+ActiveRecord::Schema.define(version: 2021_11_17_174431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_11_11_132317) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "content"
+    t.string "content", null: false
     t.integer "user_id", null: false
     t.integer "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -58,7 +58,9 @@ ActiveRecord::Schema.define(version: 2021_11_11_132317) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "not_started", null: false
+    t.integer "user_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,7 +69,9 @@ ActiveRecord::Schema.define(version: 2021_11_11_132317) do
     t.string "full_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["task_id"], name: "index_users_on_task_id"
   end
 
   add_foreign_key "tasks", "projects"
