@@ -7,4 +7,10 @@ class ProjectMailer < ApplicationMailer
 
     mail(to: user.email)
   end
+
+  def project_updated(project, user)
+    @project = project
+
+    mail(to: user.email)
+  end
 end
