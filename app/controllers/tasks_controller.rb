@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   def show
     @comments = Comment.where(task_id: params[:id])
     @comment = Comment.new(task_id: @task.id)
+    # @comment.errors
   end
 
   def new
@@ -52,6 +53,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:project_id, :title, :description, :deadline_at)
+    params.require(:task).permit(:project_id, :title, :description, :deadline_at, :status)
   end
 end

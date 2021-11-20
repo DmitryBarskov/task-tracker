@@ -20,6 +20,7 @@ p
 p
   strong Status:
   = @task.status
+
 = simple_form_for @task do |form|
   = form.label :status, "Set status", class: 'mr-2'
   = form.select :status, %w[not_started started finished]
@@ -31,6 +32,6 @@ p
 
 
 p Comments:
-= render "comments/list", comments: @comments
+= render "comments/list", task: @task, comments: @comments
 p Leave comment:
-= render "comments/form", comment: @comment
+= render "comments/form", task: @task, comment: @comment

@@ -1,14 +1,14 @@
 class CommentPolicy < ApplicationPolicy
   def create?
-    user.present?
-  end
-
-  def edit?
-    user.present?
+    record.task.project.user_ids.include? user.id
   end
 
   def update?
-    user.present?
+    record.user_id == user.id
+  end
+
+  def edit?
+    update?
   end
 
   class Scope < Scope
