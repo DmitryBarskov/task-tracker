@@ -1,7 +1,6 @@
 class CreateProject
   class SaveRecord
     include Interactor
-    byebug
 
     delegate :prepared_project_params, to: :context
 

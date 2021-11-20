@@ -13,7 +13,7 @@ class UpdateProject
     private
 
     def create_activity
-      RegisterActivityJob.perform_later(current_user.id, "project_created", project.id, "Project")
+      RegisterActivityJob.perform_later(current_user.id, "project_update", project.id, "Project")
     end
 
     def send_email_notifications
