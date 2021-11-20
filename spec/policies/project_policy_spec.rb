@@ -39,11 +39,52 @@ RSpec.describe 'ProjectPolicy', type: :policy do
     end
   end
 
-  describe '#new?'
-  describe '#create?'
+  describe '#new?' do
+    subject { policy.new? }
+
+    context 'when user is not authenticated' do
+      let(:user) { nil }
+
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when user is authenticated' do
+      let(:user) { User.new }
+
+      it { is_expected.to eq(true) }
+    end
+  end
+
+  describe '#create?' do
+    subject { policy.create? }
+
+    context 'when user is not authenticated' do
+      let(:user) { nil }
+
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when user is authenticated' do
+      let(:user) { User.new }
+
+      it { is_expected.to eq(true) }
+    end
+  end
 
   describe '#edit?' do
-    pending 'implement me'
+    subject { policy.edit? }
+
+    let(:user) { User.new(id: 42) }
+
+    context 'when user is not creator of the project' do
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when user is creator of the project' do
+      let(:project) { Project.new(user: user) }
+
+      it { is_expected.to eq(true) }
+    end
   end
 
   describe '#update?' do
@@ -62,5 +103,19 @@ RSpec.describe 'ProjectPolicy', type: :policy do
     end
   end
 
-  describe '#destroy?'
+  describe '#destroy?' do
+    subject { policy.destroy? }
+
+    let(:user) { User.new(id: 42) }
+
+    context 'when user is not creator of the project' do
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when user is creator of the project' do
+      let(:project) { Project.new(user: user) }
+
+      it { is_expected.to eq(true) }
+    end
+  end
 end
