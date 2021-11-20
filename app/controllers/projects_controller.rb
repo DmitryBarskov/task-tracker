@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
+    if @project.update_project.project
       redirect_to @project, notice: 'Project was successfully updated.'
     else
       render :edit
