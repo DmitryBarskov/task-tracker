@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
-  skip_after_action :verify_authorized, only: %i[new create]
 
   def show
+    authorize User, :create?
   end
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User, :create?
     @user = User.new(users_params)
 
     if @user.save
@@ -24,3 +26,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(:full_name, :email, :password)
   end
 end
+
+
+
+
+
+

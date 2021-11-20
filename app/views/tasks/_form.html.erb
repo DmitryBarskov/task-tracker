@@ -1,5 +1,5 @@
 <%= form_with model: task do |form| %>
-  <%= render 'common/errors', model: task %>
+  <%= render "common/errors", model: task %>
 
   <%= form.label :project_id, 'Select a project' %>
   <%= form.select :project_id, Project.all.pluck(:name, :id) %>
@@ -10,8 +10,9 @@
   <%= form.label :description, 'Description' %>
   <%= form.text_area :description %>
 
-  <%= form.label :deadline_at, 'Deadline At' %>
+  <%= form.label :deadline_at, 'Deadline at' %>
   <%= form.datetime_local_field :deadline_at %>
 
+  <br>
   <%= form.submit 'Save' %>
 <% end %>

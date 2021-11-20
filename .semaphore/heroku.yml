@@ -9,7 +9,7 @@ blocks:
   - name: Deploy
     task:
       secrets:
-        - name: task-tracker-heroku
+        - name: task-tracker
       env_vars:
         - name: HEROKU_REMOTE
           value: https://git.heroku.com/obscure-hamlet-65327.git

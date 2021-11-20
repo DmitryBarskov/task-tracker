@@ -12,14 +12,13 @@
 
 <p>
   <strong>Project:</strong>
-  <%= link_to @task.project.name, @task.project %>
+  <%= link_to @task.project.name %>
 </p>
 
 <p>
   <strong>Deadline:</strong>
-  <%= @task.deadline_at.to_s(:long) %>
+  <%= @task.deadline_at %>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Delete', task_path(@task), method: :delete %> |
 <%= link_to 'Back', tasks_path %>

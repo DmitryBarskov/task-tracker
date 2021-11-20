@@ -1,7 +1,10 @@
 class TasksController < ApplicationController
+  before_action :authenticate_current_user!, except: %i[index]
   before_action :set_task, only: %i[show edit update destroy]
+  before_action -> {authorize @task}, only: %i[show edit update destroy]
 
   def index
+    authorize Task
     @tasks = Task.all
   end
 
@@ -10,19 +13,22 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    authorize @task
   end
 
   def create
+    authorize Task, :create?
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to task_path(@task), notice: 'Task has been created!'
+      redirect_to @task, notice: 'Task has been created!'
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @task.update(task_params)
@@ -47,4 +53,5 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:project_id, :title, :description, :deadline_at)
   end
+
 end
