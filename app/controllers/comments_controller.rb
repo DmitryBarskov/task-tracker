@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @comment.task, notice: 'Comment was successfully updated.'
     else
-      redirect_to @comment.task, alert: @comment.errors.first.full_message
+      render :edit
     end
   end
 

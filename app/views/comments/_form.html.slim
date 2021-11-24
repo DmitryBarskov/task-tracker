@@ -1,5 +1,4 @@
 = simple_form_for [task, comment]  do |form|
-  = render '/common/errors', model: comment
 
   .field
     = form.input :task_id, :as => :hidden, :input_html => { :value => task.id}
