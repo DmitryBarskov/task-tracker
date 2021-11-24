@@ -7,6 +7,15 @@ class ProjectsController < ApplicationController
   def index
     authorize Project
     @projects = Project.all
+
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: { projects: @projects }
+      end
+    end
   end
 
   # GET /projects/1
