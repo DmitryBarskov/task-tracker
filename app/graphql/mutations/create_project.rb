@@ -15,7 +15,7 @@ module Mutations
       if result.success?
         result.project
       else
-        nil
+        format_errors project: result.project
       end
     end
   end
