@@ -1,6 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.6.0)
+      ruby-next-core (>= 0.11.0)
+    action_policy-graphql (0.5.3)
+      action_policy (>= 0.5.0)
+      graphql (>= 1.9.3)
+      ruby-next-core (>= 0.10.0)
     actioncable (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -83,6 +89,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     interactor (3.1.2)
+    jwt (2.3.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -116,8 +123,6 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
-    pundit (2.1.1)
-      activesupport (>= 3.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-mini-profiler (2.3.3)
@@ -171,6 +176,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
+    ruby-next-core (0.13.1)
     ruby-progressbar (1.11.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -231,17 +237,18 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  action_policy-graphql
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
   graphiql-rails
   graphql
   interactor
+  jwt
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
-  pundit (~> 2.1)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   rubocop
