@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_after_action :verify_authorized, only: [:new, :create]
+  skip_after_action :verify_authorized, only: %i[new create]
 
   def show
   end
