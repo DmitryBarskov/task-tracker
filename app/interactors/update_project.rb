@@ -1,7 +1,7 @@
 class UpdateProject
-	include Interactor::Organizer
+  include Interactor::Organizer
 
-	organize UpdateProject::PrepareParams,
-           UpdateProject::SaveRecord,
-           UpdateProject::SendNotifications
+  organize UpdateProject::PrepareParams,
+           UpdateProject::SaveRecord
+           # UpdateProject::SendNotifications
 end

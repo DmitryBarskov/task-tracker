@@ -6,10 +6,18 @@ class TasksController < ApplicationController
   def index
     authorize Task
     @tasks = Task.all
+
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.json do
+        render json: {tasks: @tasks.to_json}
+      end
+    end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @task = Task.new
@@ -19,10 +27,9 @@ class TasksController < ApplicationController
   def create
     authorize Task, :create?
 
-    @task = Task.new(task_params)
-
-    if @task.save
-      redirect_to task_path(@task), notice: 'Task has been created!'
+    @task = create_task.task
+    if create_task.success?
+      redirect_to @task, notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -31,8 +38,8 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    if @task.update(task_params)
-      redirect_to @task, notice: 'The task has been updated!'
+    if @task.update_task.task
+      redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit
     end
@@ -46,11 +53,22 @@ class TasksController < ApplicationController
 
   private
 
+  def create_task
+    @create_task ||=
+      CreateTask.call(task_params: task_params, current_user: current_user)
+  end
+
+  def update_task
+    @update_task ||=
+      UpdateTask.call(task_params: task_params, current_user: current_user, task_id: @task.id)
+  end
+
+
   def set_task
     @task = Task.find_by!(id: params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:project_id, :title, :description, :deadline_at)
+    params.require(:task).permit(:project_id, :title, :description, :deadline_at).merge(user_id: current_user.id)
   end
 end

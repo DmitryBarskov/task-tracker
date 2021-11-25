@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'rubocop'
 gem 'interactor'
 gem 'sidekiq'
+gem 'graphql'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -38,3 +39,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "pundit", "~> 2.1"
+gem 'graphiql-rails', group: :development
