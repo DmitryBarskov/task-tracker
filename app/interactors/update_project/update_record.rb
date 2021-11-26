@@ -10,11 +10,5 @@ class UpdateProject
         context.fail!(error: "Invalid data")
       end
     end
-
-    private
-
-    def project
-      @project ||= project
-    end
   end
 end
