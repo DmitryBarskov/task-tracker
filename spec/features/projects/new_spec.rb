@@ -12,8 +12,6 @@ RSpec.describe 'Create a project', type: :feature do
 
     click_button 'Create Project'
 
-    save_and_open_page
-
     expect(page).to have_content('Project was successfully created.')
     expect(page).to have_content('A test project')
     expect(page).to have_content('Test description')
