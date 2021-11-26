@@ -2,11 +2,11 @@ class UpdateProject
   class PrepareParams
     include Interactor
 
-    delegate :current_user, :project_params, :project_id, to: :context
+    delegate :current_user, :project_params, :project_obj, to: :context
 
     def call
       context.prepared_project_params = prepared_project_params
-      context.project_id = project_id
+      context.project_obj = project_obj
     end
 
     private

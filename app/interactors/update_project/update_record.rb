@@ -2,11 +2,11 @@ class UpdateProject
   class UpdateRecord
     include Interactor
 
-    delegate :prepared_project_params, :project_id, to: :context
+    delegate :prepared_project_params, :project_obj, to: :context
 
     def call
-      context.project = project
-      unless project.update(prepared_project_params)
+      context.project = project_obj
+      unless project_obj.update(prepared_project_params)
         context.fail!(error: "Invalid data")
       end
     end
@@ -14,7 +14,7 @@ class UpdateProject
     private
 
     def project
-      @project ||= Project.find(project_id)
+      @project ||= project
     end
   end
 end
