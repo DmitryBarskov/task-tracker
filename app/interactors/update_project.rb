@@ -3,5 +3,5 @@ class UpdateProject
 
 	organize UpdateProject::PrepareParams,
            UpdateProject::SaveRecord,
-           UpdateProject::SendNotifications
+           # UpdateProject::SendNotifications
 end

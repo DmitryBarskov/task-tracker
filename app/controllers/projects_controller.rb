@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     authorize Project, :create?
-
     @project = create_project.project
     if create_project.success?
       redirect_to @project, notice: 'Project was successfully created.'

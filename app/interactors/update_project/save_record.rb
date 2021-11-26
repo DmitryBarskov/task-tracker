@@ -8,11 +8,6 @@ class UpdateProject
       context.project = project
       context.fail!(error: "Invalid data") unless project.update(prepared_project_params)
     end
-
-    private
-
-    def project
-      @project ||= Project.find(project.id)
-    end
+    
   end
 end
