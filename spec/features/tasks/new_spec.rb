@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Create a task', type: :feature do
   include_context 'when user signed in'
 
-  let(:project) { create(:project, name: 'A test project') }
-
-  scenario 'user creates a task' do
+  before do
     visit projects_path
     click_on 'New Project'
 
@@ -13,17 +11,20 @@ RSpec.describe 'Create a task', type: :feature do
     fill_in 'Description', with: 'Test description'
 
     click_button 'Create Project'
+  end
 
+  scenario 'user creates a task' do
     visit tasks_path
     click_on 'New Task'
 
+    select "A test project", :from => "Select a project"
     fill_in 'Title', with: 'A test task'
     fill_in 'Description', with: 'Test description'
     fill_in 'Deadline', with: 'November 27, 2021 23:59'
 
     click_button 'Save'
 
-    expect(page).to have_content("Task has been created! ")
+    expect(page).to have_content("Task has been created!")
   end
 end
 
