@@ -1,0 +1,6 @@
+= simple_form_for [@task, @comment] do |form|
+  .field
+    = form.input :content
+
+  .actions
+    = form.button :submit, class: "btn btn-primary"

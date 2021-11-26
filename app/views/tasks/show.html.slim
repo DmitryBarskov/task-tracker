@@ -1,0 +1,37 @@
+p id="notice" = notice
+
+p
+  strong Title:
+  = @task.title 
+
+
+p
+  strong Description:
+  = @task.description
+
+
+p
+  strong Project:
+  = link_to @task.project.name, @task.project
+
+
+p
+  strong Deadline:
+  = @task.deadline_at.to_s(:long)
+
+
+= link_to 'Edit', edit_task_path(@task)
+||
+= link_to 'Delete', task_path(@task), method: :delete
+||
+= link_to 'Back', tasks_path
+
+p
+  strong Comments:
+hr
+  = render "comments/list", comments: @task.comments
+hr
+p Leave comment:
+= render "comments/form", comment: @comment
+
+- console
