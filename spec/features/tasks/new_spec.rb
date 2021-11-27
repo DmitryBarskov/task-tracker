@@ -19,6 +19,11 @@ RSpec.describe 'Create a task', type: :feature do
     click_button 'Save'
 
     expect(page).to have_content("Task has been created!")
+
+    expect(page).to have_content("Title: A test task")
+    expect(page).to have_content("Description: Test description")
+    expect(page).to have_content("Project: A test project")
+    expect(page).to have_content("Deadline: November 27, 2021 23:59")
   end
 end
 
