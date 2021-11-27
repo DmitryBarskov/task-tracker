@@ -19,6 +19,10 @@ p
   strong Deadline:
   = @task.deadline_at.to_s(:long)
 
+p
+  strong Status:
+  = @task.status
+
 
 = link_to 'Edit', edit_task_path(@task)
 ||

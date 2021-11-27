@@ -1,0 +1,25 @@
+= simple_form_for task do |form|
+  = render 'common/errors', model: task
+
+  .field
+    = form.label :project_id, 'Select a project'
+    = form.select :project_id, Project.all.pluck(:name, :id)
+
+  .field
+    = form.label :title, 'Title'
+    = form.text_field :title
+
+  .field
+    = form.label :description, 'Description'
+    = form.text_area :description
+
+  .field
+    = form.label :deadline_at, 'Deadline At'
+    = form.datetime_local_field :deadline_at
+
+  .field
+    = form.label :status, 'Status'
+    = form.select :status, options_for_select(Task::ALLOWED_STATUSES, selected=task.status)
+
+  .actions
+    = form.submit 'Save', class: "btn btn-primary"
