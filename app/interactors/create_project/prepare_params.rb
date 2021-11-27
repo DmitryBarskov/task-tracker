@@ -13,6 +13,7 @@ class CreateProject
     def prepared_project_params
       project_params.merge(
         {
+          user_id: current_user.id,
           user_ids: user_ids
         }
       )

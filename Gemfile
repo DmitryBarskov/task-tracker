@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim'
 gem 'simple_form'
 gem 'rubocop'
-gem 'iteractor'
+gem 'interactor'
 gem 'sidekiq'
 
 group :development, :test do

@@ -37,7 +37,9 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
+    authorize @project, :update?
+    @project = update_project.project
+    if update_project.success?
       redirect_to @project, notice: 'Project was successfully updated.'
     else
       render :edit
@@ -55,6 +57,10 @@ class ProjectsController < ApplicationController
   def create_project
     @create_project ||=
       CreateProject.call(project_params: project_params, current_user: current_user)
+  end
+
+  def update_project
+    UpdateProject.call(project_params: project_params, current_user: current_user)
   end
 
   def set_project
