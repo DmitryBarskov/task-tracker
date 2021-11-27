@@ -14,7 +14,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    user.id == project.user_id
+    user.id.in? project.user_ids
   end
 
   def destroy?
