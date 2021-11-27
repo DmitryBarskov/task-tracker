@@ -4,13 +4,7 @@ RSpec.describe 'Create a task', type: :feature do
   include_context 'when user signed in'
 
   before do
-    visit projects_path
-    click_on 'New Project'
-
-    fill_in 'Name', with: 'A test project'
-    fill_in 'Description', with: 'Test description'
-
-    click_button 'Create Project'
+    create(:project, name: 'A test project')
   end
 
   scenario 'user creates a task' do
