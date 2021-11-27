@@ -1,3 +1,4 @@
+= stylesheet_link_tag 'application'
 = simple_form_for project do |form|
   .field
     = form.input :name
@@ -6,7 +7,9 @@
     = form.input :description
   
   .field
-    = form.input :user_ids, collection: User.all, multiple: true
+    = form.select(:user_ids, User.all.collect {|user| [ user.email, user.id ]},
+            { :prompt => "Please select" },
+            { :multiple => true, :size => 5 })
 
   .actions
     = form.button :submit, class: "btn btn-primary"

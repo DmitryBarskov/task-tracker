@@ -1,0 +1,19 @@
+p id="notice" = notice
+
+p
+  strong Name:
+  = @project.name
+
+p
+  strong Description:
+  = @project.description
+
+p
+  strong Users in project:
+ul
+  - @project.user_ids.each do |user_id|
+    li = User.find_by(id: user_id)
+
+= link_to 'Edit', edit_project_path(@project)
+||
+= link_to 'Back', projects_path
