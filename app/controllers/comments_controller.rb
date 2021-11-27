@@ -3,17 +3,13 @@ class CommentsController < ApplicationController
   before_action :set_comment
   before_action -> { authorize @comment }, only: %i[show edit update]
 
-  # def index
-  # end
-
   def create
     @comment = Comment.new(comment_params)
     authorize @comment
     if @comment.save
       redirect_to @comment.task, notice: 'Comment was successfully created.'
     else
-      redirect_to @comment.task, alert: @comment.errors.full_messages
-        # 'Comment was not created'
+      redirect_to @comment.task, alert: 'Comment was not created'
     end
   end
 
