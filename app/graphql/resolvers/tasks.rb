@@ -1,9 +1,9 @@
 module Resolvers
-	class Tasks < Resolvers::Base
-		type [Types::TaskType], null: false
+  class Tasks < Resolvers::Base
+    type [Types::TaskType], null: false
 
-		def resolve(**_params)
-			::Task.all
-		end
-	end
+    def resolve(**params)
+      ::Task.all
+    end
+  end
 end

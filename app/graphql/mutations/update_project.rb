@@ -7,11 +7,11 @@ module Mutations
 
     type Types::ProjectType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::UpdateProject.call(
-        project_params: _options.slice(:name, :description, :user_ids),
+        project_params: options.slice(:name, :description, :user_ids),
         current_user: current_user,
-        project_id: _options[:project_id]
+        project_id: options[:project_id]
       )
 
       if result.success?

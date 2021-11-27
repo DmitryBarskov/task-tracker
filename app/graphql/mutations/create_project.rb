@@ -6,9 +6,9 @@ module Mutations
 
     type Types::ProjectType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::CreateProject.call(
-        project_params: _options ,
+        project_params: options,
         current_user: current_user
       )
 

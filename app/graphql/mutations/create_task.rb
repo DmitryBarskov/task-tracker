@@ -7,9 +7,9 @@ module Mutations
 
     type Types::TaskType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::CreateTask.call(
-        task_params: _options ,
+        task_params: options ,
         current_user: current_user
       )
 

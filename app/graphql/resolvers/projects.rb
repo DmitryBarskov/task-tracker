@@ -1,9 +1,9 @@
 module Resolvers
-	class Projects < Resolvers::Base
-		type [Types::ProjectType], null: false
+  class Projects < Resolvers::Base
+    type [Types::ProjectType], null: false
 
-		def resolve(**_params)
-			::Project.all
-		end
-	end
+    def resolve(**params)
+      ::Project.all
+    end
+  end
 end

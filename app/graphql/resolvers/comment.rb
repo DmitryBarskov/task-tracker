@@ -1,11 +1,11 @@
 module Resolvers
-	class Comment < Resolvers::Base
-		argument :id, ID, required: true
+  class Comment < Resolvers::Base
+    argument :id, ID, required: true
 
-		type Types::CommentType, null: true
-
-		def resolve(**_params)
-			::CommentType.find_by(id: _params[:id])
-		end
-	end
+    type Types::CommentType, null: false
+rue
+    def resolve(**params)
+      ::CommentType.find_by(id: params[:id]) 
+    end
+  end
 end

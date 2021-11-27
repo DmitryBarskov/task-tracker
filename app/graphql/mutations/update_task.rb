@@ -8,11 +8,11 @@ module Mutations
 
     type Types::TaskType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::UpdateTask.call(
-        task_params: _options.slice(:project_id, :title, :description, :deadline_at),
+        task_params: options.slice(:project_id, :title, :description, :deadline_at),
         current_user: current_user,
-        task_id: _options[:task_id]
+        task_id: options[:task_id]
       )
 
       if result.success?

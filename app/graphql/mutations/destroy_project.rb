@@ -4,8 +4,8 @@ module Mutations
 
     type Types::ProjectType
 
-    def resolve(**_options)
-      result = Project.find_by(id: _options[:project_id])
+    def resolve(**options)
+      result = Project.find_by(id: options[:project_id])
 
       if result
         result.destroy

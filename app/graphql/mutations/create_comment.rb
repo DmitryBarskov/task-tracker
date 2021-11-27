@@ -1,13 +1,13 @@
 module Mutations
-  class CreateTask < BaseMutation
+  class CreateComment < BaseMutation
     argument :task_id, ID, required: true
     argument :content, String, required: true
 
     type Types::CommentType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::CreateComment.call(
-        comment_params: _options ,
+        comment_params: options ,
         current_user: current_user
       )
 
@@ -19,13 +19,3 @@ module Mutations
     end
   end
 end
-
-  # def comment_params
-  #   params.require(:comment)
-  #     .permit(:content, :task_id)
-  #     .merge(
-  #       {
-  #         user: current_user
-  #       }
-  #     )
-  # end

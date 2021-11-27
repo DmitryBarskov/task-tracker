@@ -4,8 +4,8 @@ module Mutations
 
     type Types::TaskType
 
-    def resolve(**_options)
-      result = Task.find_by(id: _options[:task_id])
+    def resolve(**options)
+      result = Task.find_by(id: options[:task_id])
 
       if result
         result.destroy

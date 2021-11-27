@@ -1,5 +1,5 @@
 module Mutations
-  class UpdateTask < BaseMutation
+  class UpdateComment < BaseMutation
     argument :comment_id, ID, required: true
     argument :task_id, ID, required: true
     argument :content, String, required: true
@@ -7,9 +7,9 @@ module Mutations
 
     type Types::CommentType
 
-    def resolve(**_options)
+    def resolve(**options)
       result = ::UpdateComment.call(
-        comment_params: _options.slice(:task_id, :content),
+        comment_params: options.slice(:task_id, :content),
         current_user: current_user,
         task_id: _options[:comment_id]
       )
