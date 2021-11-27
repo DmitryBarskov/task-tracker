@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  
   before_action :authenticate_current_user!, except: %i[index]
   before_action :set_project, only: %i[show edit update destroy]
   before_action -> { authorize @project }, only: %i[show edit update destroy]
@@ -36,7 +37,7 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update_project.project
+    if update_project.project
       redirect_to @project, notice: 'Project was successfully updated.'
     else
       render :edit
