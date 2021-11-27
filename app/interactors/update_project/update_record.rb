@@ -13,7 +13,7 @@ class UpdateProject
     private
 
     def project
-      @project ||= Project.find_by!(prepared_project_params[:id])
+      @project ||= Project.find_by!(id: prepared_project_params[:id])
     end
   end
 end

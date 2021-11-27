@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
   end
 
   def update_project
-    UpdateProject.call(project_params: project_params, current_user: current_user)
+    UpdateProject.call(project_params: project_params, current_user: current_user, project_id: @project.id.to_s)
   end
 
   def set_project
