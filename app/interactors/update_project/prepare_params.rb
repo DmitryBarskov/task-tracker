@@ -19,7 +19,7 @@ class UpdateProject
     end
 
     def user_ids
-      project_params[:user_ids].push(current_user.id.to_s).uniq
+      project_params[:user_ids].uniq
     end
   end
 end
