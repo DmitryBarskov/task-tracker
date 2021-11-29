@@ -1,12 +1,12 @@
-class ProjectPolicy < ApplicationPolicy
-  alias_method :project, :record
+class TaskPolicy < ApplicationPolicy
+  alias_method :task, :record
 
   def index?
     true
   end
 
   def show?
-    user.present?
+    task.project.user_ids.include?(user.id)
   end
 
   def create?
@@ -14,7 +14,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    project.user_ids.include? user.id
+    show?
   end
 
   def destroy?
