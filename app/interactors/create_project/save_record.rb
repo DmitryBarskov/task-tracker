@@ -2,7 +2,7 @@ class CreateProject
   class SaveRecord
     include Interactor
 
-    delegate :prepared_project_params, to: :context
+    delegate :project_params, to: :context
 
     def call
       context.project = project
@@ -12,7 +12,7 @@ class CreateProject
     private
 
     def project
-      @project ||= Project.new(prepared_project_params)
+      @project ||= Project.new(project_params)
     end
   end
 end
