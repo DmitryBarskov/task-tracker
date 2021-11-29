@@ -1,25 +1,36 @@
 class CommentsController < ApplicationController
   before_action :authenticate_current_user!
-  before_action :set_comment
+  before_action :set_comment, only: %i[edit update]
+  before_action -> { authorize @comment }, only: %i[edit update]
+
+  def new
+    @comment = Comment.new
+    authorize @comment
+  end
 
   def create
-    comment = Comment.new(comment_params)
+    authorize Comment, :create?
+    @task = Task.find_by(id: params[:task_id])
+    @comment = create_comment.comment
 
-    if comment.save
-      redirect_to comment, notice: 'Comment was successfully created.'
+    if create_comment.success?
+      redirect_to @comment.task, notice: 'Comment was successfully created'
     else
-      redirect_to comment.task, alert: 'Comment was not created'
+      redirect_to @comment.task, alert: @comment.errors.full_messages.first
     end
   end
 
   def edit
+    @task = Task.find(params[:task_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
-    if comment.update(comment_params)
-      redirect_to comment, notice: 'Comment was successfully updated.'
+    @task = Task.find(params[:task_id])
+    if update_comment.success?
+      redirect_to @comment.task, notice: 'Comment was successfully updated'
     else
-      redirect_to comment.task, alert: 'Comment was not updated'
+      redirect_to @comment.task, alert: @comment.errors.full_messages.first
     end
   end
 
@@ -29,12 +40,23 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
   end
 
+  def create_comment
+    @create_comment ||= CreateComment.call(comment_params: comment_params,
+                                           current_user: current_user)
+  end
+
+  def update_comment
+    @update_comment ||= UpdateComment.call(comment_params: comment_params,
+                                           comment: @comment, current_user: current_user)
+  end
+
   def comment_params
     params.require(:comment)
       .permit(:content, :task_id)
       .merge(
         {
-          user: current_user
+          user: current_user,
+          task: @task
         }
       )
   end
