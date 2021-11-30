@@ -11,4 +11,8 @@ class ProjectMailer < ApplicationMailer
   def project_updated(project, user)
     project_created(project, user)
   end
+
+  def project_destroyed(project, user)
+    project_created(project, user)
+  end
 end
