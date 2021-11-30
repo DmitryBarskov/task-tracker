@@ -5,7 +5,7 @@ module Resolvers
     type Types::CommentType, null: false
 rue
     def resolve(**params)
-      ::CommentType.find_by(id: params[:id]) 
+      ::Comment.find_by(id: params[:id]) 
     end
   end
 end
