@@ -1,11 +1,11 @@
-class UpdateProject
+class UpdateTask
   class UpdateRecord
     include Interactor
 
-    delegate :project_params, :project, to: :context
+    delegate :task_params, :task, to: :context
 
     def call
-      unless project.update(project_params)
+      unless task.update(task_params)
         context.fail!(error: "Invalid data")
       end
     end
