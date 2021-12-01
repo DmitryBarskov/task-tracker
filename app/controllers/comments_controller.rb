@@ -3,12 +3,12 @@ class CommentsController < ApplicationController
   before_action :set_comment
 
   def create
-    comment = Comment.new(comment_params)
+    @comment = create_comment.comment
 
-    if comment.save
-      redirect_to comment, notice: 'Comment was successfully created.'
+    if create_comment.success?
+      redirect_to @comment.task, notice: 'comment was successfully created.'
     else
-      redirect_to comment.task, alert: 'Comment was not created'
+      redirect_to @comment.task, alert: 'Comment was not created.'
     end
   end
 
@@ -16,15 +16,25 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if comment.update(comment_params)
-      redirect_to comment, notice: 'Comment was successfully updated.'
+    if update_comment.success?
+      redirect_to @comment.task, notice: 'Comment was successfully updated.'
     else
-      redirect_to comment.task, alert: 'Comment was not updated'
+      redirect_to @comment.task, alert: 'Comment was not updated.'
     end
   end
 
   private
 
+  def create_comment
+    @create_comment ||=
+      CreateComment.call(comment_params: comment_params, current_user: current_user)
+  end
+
+  def update_comment
+    @update_comment ||=
+      UpdateComment.call(comment_params: comment_params, comment: @comment)
+  end
+  
   def set_comment
     @comment = Comment.find_by(id: params[:id])
   end
