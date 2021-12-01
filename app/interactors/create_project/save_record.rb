@@ -8,9 +8,7 @@ class CreateProject
       context.project = project
       context.fail!(error: "Invalid data") unless project.save 
     end
-
     private
-
     def project
       @project ||= Project.new(prepared_project_params)
     end

@@ -8,3 +8,11 @@ class ProjectMailer < ApplicationMailer
     mail(to: user.email)
   end
 end
+
+
+  def project_update(project, user)
+    @project = project
+
+    mail(to: user.email)
+  end
+end

@@ -1,10 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_current_user!
   before_action :set_comment
-
   def create
     comment = Comment.new(comment_params)
-
     if comment.save
       redirect_to comment, notice: 'Comment was successfully created.'
     else
@@ -12,8 +10,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if comment.update(comment_params)
@@ -23,11 +20,13 @@ class CommentsController < ApplicationController
     end
   end
 
+
   private
 
   def set_comment
     @comment = Comment.find_by(id: params[:id])
   end
+
 
   def comment_params
     params.require(:comment)
@@ -38,4 +37,5 @@ class CommentsController < ApplicationController
         }
       )
   end
-end
+
+  
