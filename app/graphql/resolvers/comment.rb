@@ -3,7 +3,7 @@ module Resolvers
     argument :id, ID, required: true
 
     type Types::CommentType, null: false
-rue
+
     def resolve(**params)
       ::Comment.find_by(id: params[:id]) 
     end

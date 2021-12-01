@@ -11,7 +11,7 @@ module Mutations
       result = ::UpdateComment.call(
         comment_params: options.slice(:task_id, :content),
         current_user: current_user,
-        comment_id: _options[:comment_id]
+        comment_id: options[:comment_id]
       )
 
       if result.success?

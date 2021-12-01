@@ -8,6 +8,6 @@ module Types
 
     field :task, resolver: Resolvers::Task
 
-    field :comment resolver: Resolvers::Comment
+    field :comment, resolver: Resolvers::Comment
   end
 end
