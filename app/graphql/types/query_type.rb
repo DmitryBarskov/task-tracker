@@ -6,5 +6,7 @@ module Types
 
     field :projects, resolver: Resolvers::Projects
     field :project, resolver: Resolvers::Project
+    field :tasks, resolver: Resolvers::Tasks
+    field :task, resolver: Resolvers::Task
   end
 end
