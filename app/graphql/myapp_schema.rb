@@ -2,6 +2,9 @@ class MyappSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
 
+
+
+
   # GraphQL-Ruby calls this when something goes wrong while running a query:
   def self.type_error(err)
     # if err.is_a?(GraphQL::InvalidNullError)

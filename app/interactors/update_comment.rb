@@ -1,7 +1,6 @@
 class UpdateComment
   include Interactor::Organizer
 
-  organize UpdateComment::PrepareParams,
-           UpdateComment::SaveRecord
+  organize UpdateComment::SaveRecord
            # UpdateComment::SendNotifications
 end

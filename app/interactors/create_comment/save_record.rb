@@ -2,7 +2,7 @@ class CreateComment
   class SaveRecord
     include Interactor
 
-    delegate :prepared_comment_params, to: :context
+    delegate :comment_params, to: :context
 
     def call
       context.comment = comment
@@ -12,7 +12,7 @@ class CreateComment
     private
 
     def comment
-      @comment ||= Comment.new(prepared_comment_params)
+      @comment ||= Comment.new(comment_params)
     end
   end
 end

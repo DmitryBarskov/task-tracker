@@ -17,7 +17,10 @@ class TasksController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @comments = Comment.where(task_id: @task.id)
+    @comment = Comment.new
+  end
 
   def new
     @task = Task.new

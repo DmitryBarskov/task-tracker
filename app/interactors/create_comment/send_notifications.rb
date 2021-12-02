@@ -5,7 +5,7 @@ class CreateComment
     delegate :comment, :current_user, to: :context
 
     def call
-      send_email_notifications
+      send_email_notification
       create_activity
     end
 
@@ -13,10 +13,6 @@ class CreateComment
 
     def create_activity
       RegisterActivityJob.perform_later(current_user.id, "comment_created", comment.id, "Comment")
-    end
-
-    def send_email_notifications
-      send_email_notification(comment, current_user)
     end
   end
 end

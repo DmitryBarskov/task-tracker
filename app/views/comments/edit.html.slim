@@ -1,0 +1,5 @@
+h1 Editing Comment
+
+= render 'form', comment: @comment, task: @task
+br
+= link_to 'Back', tasks_path(@comment.task_id)

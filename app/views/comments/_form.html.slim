@@ -1,0 +1,9 @@
+
+p
+  strong Add Comment
+
+= simple_form_for [@task, @comment] do |form|
+  br
+  = form.input :content
+  br
+  = form.submit 'Save'

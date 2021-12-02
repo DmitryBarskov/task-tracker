@@ -8,12 +8,12 @@ module Mutations
     type Types::CommentType
 
     def resolve(**options)
+      comment = ::Comment.find_by(id: options[:comment_id])
       result = ::UpdateComment.call(
-        comment_params: options.slice(:task_id, :content),
+        comment_params: options.slice(:task_id, :content).merge(user_id: current_user.id),
         current_user: current_user,
-        comment_id: options[:comment_id]
+        comment: comment
       )
-
       if result.success?
         result.comment
       else
