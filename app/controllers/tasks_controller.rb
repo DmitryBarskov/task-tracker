@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @comment = current_user.comments.new(task: @task)
   end
 
   def new
