@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
   before_action :authenticate_current_user!
   before_action :set_comment
+  before_action -> { authorize @comment }, only: %i[edit update]
 
   def create
     comment = create_comment.comment
+    authorize comment
 
     if create_comment.success?
-      redirect_to comment.task, notice: 'comment was successfully created.'
+      redirect_to comment.task, notice: 'Comment was successfully created.'
     else
       redirect_to comment.task, alert: 'Comment was not created.'
     end
@@ -18,9 +20,9 @@ class CommentsController < ApplicationController
 
   def update
     if update_comment.success?
-      redirect_to comment.task, notice: 'Comment was successfully updated.'
+      redirect_to @comment.task, notice: 'Comment was successfully updated.'
     else
-      redirect_to comment.task, alert: 'Comment was not updated.'
+      redirect_to @comment.task, alert: 'Comment was not updated.'
     end
   end
 
