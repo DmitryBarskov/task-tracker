@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_15_185354) do
+ActiveRecord::Schema.define(version: 2021_12_04_100857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -38,26 +38,28 @@ ActiveRecord::Schema.define(version: 2021_11_15_185354) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
+    t.datetime "discarded_at"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "projects_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
+    t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "title"
     t.text "description"
     t.datetime "deadline_at"
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.string "status", default: "not_started", null: false
-    t.bigint "user_id", null: false
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -72,5 +74,4 @@ ActiveRecord::Schema.define(version: 2021_11_15_185354) do
   end
 
   add_foreign_key "tasks", "projects"
-  add_foreign_key "tasks", "users"
 end

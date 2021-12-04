@@ -4,7 +4,7 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :projects, resolver: Resolvers::Projects
+    field :projects, resolver: Resolvers::Projects, connection: true
     field :project, resolver: Resolvers::Project
   end
 end

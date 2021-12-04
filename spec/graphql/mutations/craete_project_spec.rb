@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Mutations::CreateProject do
-  subject { MyappSchema.execute(query, context: context).to_h['data']['createProject'] }
+  include_context "when time is frozen"
 
-  let(:context) { { current_user: create(:user) } }
+  let(:schema_context) { { current_user: create(:user) } }
 
   let(:query) do
     <<-GQL
@@ -17,6 +17,7 @@ RSpec.describe Mutations::CreateProject do
           tasks {
             title
           }
+          createdAt
         }
       }
     GQL
@@ -25,7 +26,9 @@ RSpec.describe Mutations::CreateProject do
   context 'with valid data' do
     let(:name) { 'Project 1' }
     let(:description) { 'GraphQL API' }
-
-    it { is_expected.to eq('name' => 'Project 1', 'description' => 'GraphQL API', 'tasks' => []) }
+    
+    it_behaves_like "graphql request", "creates project" do
+      let(:fixture_path) { "graphql/json/create_project.json" }
+    end
   end
 end

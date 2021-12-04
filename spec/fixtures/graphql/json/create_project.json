@@ -1,0 +1,10 @@
+{
+  "data": {
+    "createProject": {
+      "description": "GraphQL API",
+      "name": "Project 1",
+      "tasks": [],
+      "createdAt": "2020-05-10T12:30:00Z"
+    }
+  }
+}

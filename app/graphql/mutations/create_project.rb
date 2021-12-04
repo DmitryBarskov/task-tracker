@@ -7,6 +7,8 @@ module Mutations
     type Types::ProjectType
 
     def resolve(**options)
+      authorize! Project, to: :create?
+
       result = ::CreateProject.call(
         project_params: options,
         current_user: current_user

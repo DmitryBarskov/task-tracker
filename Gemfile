@@ -12,6 +12,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+gem 'discard'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -32,6 +33,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'simplecov', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do

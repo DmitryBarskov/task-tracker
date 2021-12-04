@@ -7,6 +7,7 @@ class ProjectPolicy < ApplicationPolicy
 
   def show?
     user.present?
+    false
   end
 
   def create?

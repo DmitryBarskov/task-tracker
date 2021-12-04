@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  include Discard::Model
+
   belongs_to :user, optional: true
   has_many :tasks
   has_many :activities, as: :target
