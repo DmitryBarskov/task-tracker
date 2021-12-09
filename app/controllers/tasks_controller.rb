@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   def edit; end
 
   def update
-    if @task.update_task.task
+    if update_task.task
       redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit
