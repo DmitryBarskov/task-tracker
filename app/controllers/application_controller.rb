@@ -1,2 +1,4 @@
 class ApplicationController < ActionController::Base
-end
+    include Authentication
+    include Authorization
+  end
