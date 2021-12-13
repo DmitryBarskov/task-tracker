@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment)
-      .permit(:content, :task_id)
+      .permit(:content)
       .merge(
         {
           user: current_user,
