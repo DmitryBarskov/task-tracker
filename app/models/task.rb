@@ -3,6 +3,8 @@ class Task < ApplicationRecord
 
   belongs_to :project
 
+  has_many :comments, dependent: :delete_all
+
   validates :title, presence: true
   validates :title, length: { minimum: 5 }
   validates :deadline_at, presence: true

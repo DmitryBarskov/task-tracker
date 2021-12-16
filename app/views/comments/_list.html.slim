@@ -1,0 +1,9 @@
+h3
+  'Comments:
+- @comments.each do |comment|
+  p
+    = comment.user.full_name
+    = ': '
+    = comment.content
+    = ' '
+    = link_to 'Edit', edit_task_comment_path(comment.task_id, comment.id)

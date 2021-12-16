@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_current_user!, except: %i[new create]
+  before_action -> { authorize User }, only: %i[show]
   skip_after_action :verify_authorized, only: [:new, :create]
 
   def show
@@ -6,9 +8,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
+    authorize User, :create?
+    
     @user = User.new(users_params)
 
     if @user.save
@@ -23,4 +28,5 @@ class UsersController < ApplicationController
   def users_params
     params.require(:user).permit(:full_name, :email, :password)
   end
+
 end

@@ -9,4 +9,5 @@ class SessionPolicy < ApplicationPolicy
       scope.all
     end
   end
+  
 end

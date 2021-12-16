@@ -20,9 +20,14 @@
   <%= @task.deadline_at.to_s(:long) %>
 </p>
 
+<p>
+  <strong>Status:</strong>
+  <%= @task.status %>
+<br>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Delete', task_path(@task), method: :delete %> |
 <%= link_to 'Back', tasks_path %>
 
-
-render comments, partial: "comments/list"
+<%= render partial: "comments/form", comment: @comment, task: @task %>
+<%= render partial: "comments/list", comments: @comments %>

@@ -1,0 +1,8 @@
+h1
+  | New task #{@task.name} created.
+p
+  | You is a member of this task. Here you can see list of members of this task:
+  ul
+    - @task.users.each do |user|
+      li 
+        = user.email
