@@ -1,0 +1,16 @@
+p#notice= notice
+p
+  strong Title:
+  = @task.title
+p
+  strong Description:
+  = @task.description
+p
+  strong Project:
+  = link_to @task.project.name, @task.project
+p
+  strong DeadLine:
+  = @task.deadline_at
+= link_to 'Edit', edit_task_path(@task)
+| \
+= link_to 'Back', tasks_path
